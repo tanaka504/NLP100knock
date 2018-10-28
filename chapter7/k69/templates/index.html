@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block content %}
+  <!-- Form
+  ================================================== -->
+
+<div class="form">
+  <!--<div class="container">-->
+    <!--<div class="row">-->
+      <!--<div class="col-md-12">-->
+        <p class="lead">
+          <!-- nameを受け取ると上の文章，nameを受け取らないと下の文章 -->
+          {% if keyword %}
+            {{ keyword }} の検索結果
+          {% else %}
+            {{ message }}
+          {% endif %}
+        </p>
+        <!-- 入力フォーム -->
+        <form action="/post" method="post" class="form-inline">
+          <label for="keyword">アーティスト検索</label>
+          <input type="text" class="form-control" id="keyword" name="keyword" placeholder="Keyword">
+          <input type="radio" name="search_type" value="by_kwd"> キーワード検索
+            <input type="radio" name="search_type" value="by_tag"> タグ検索
+          <button type="submit" class="btn btn-default">検索</button>
+        </form>
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+</div>
+<div class="result">
+    <p class="view">
+    {% if result %}
+        {% for index in result %}
+        <div class="section">
+            <table class="tableA">
+                <tbody>
+                    <tr>
+                        <th>NAME</th>
+                        <td>{{ index.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>ALIASE_NAME</th>
+                        <td>{{ index.aliase_name }}</td>
+                    </tr>
+                    <tr>
+                        <th>AREA</th>
+                        <td>{{ index.area }}</td>
+                    </tr>
+                    <tr>
+                        <th>TAGS</th>
+                        <td>{{ index.tags_list }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        {% endfor %}
+    {% endif %}
+    </p>
+</div>
+
+{% endblock %}
