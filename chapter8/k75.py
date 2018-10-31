@@ -4,7 +4,7 @@ import numpy as np
 
 def main():
     _, vocab = train()
-    X_tensor = np.sum([np.sum([np.eye(vocab.vocab_size)[wid] for wid in sentence], axis=0) for sentence in vocab.sentences], axis=0)
+    X_tensor = np.sum([np.sum([np.eye(vocab.vocab_size+1)[wid] for wid in sentence], axis=0) for sentence in vocab.sentences], axis=0)
     [print(vocab.id2word[idx]) for idx in X_tensor.argsort()[::-1][:10]]
     [print(vocab.id2word[idx]) for idx in X_tensor.argsort()[:10]]
 

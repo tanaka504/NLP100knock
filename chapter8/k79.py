@@ -12,7 +12,7 @@ def draw_figure(X, Y):
 
 def main():
     trues, _, probs = labeling()
-    precision, recall, thr = precision_recall_curve(y_true=trues, probas_pred=probs)
+    precision, recall, thr = precision_recall_curve(y_true=trues, probas_pred=[p[0] for p in probs])
     draw_figure(recall, precision)
 
 
